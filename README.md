@@ -46,16 +46,16 @@ Para cada repositório, escolha uma prática ou dado de teste relevante e expliq
 
 ### Repositório 1 
 
-Repositório: `<URL_DO_REPOSITÓRIO>`
+Repositório: `https://github.com/fastapi/fastapi`
 
-URL TestMiner: `<URL_NO_TESTMINER>`
+URL TestMiner: `https://andrehora.github.io/testminer/#fastapi/fastapi`
 
-Explicação: `<SUA_EXPLICAÇÃO>`
+Explicação: O TestMiner mostra, na seção "Test Dependencies", as bibliotecas de teste usadas pelo FastAPI via PyPI: `pytest`, `pytest-cov`, `pytest-xdist`, `pytest-timeout`, `pytest-sugar`, `pytest-codspeed`, `playwright`, `coverage` e `dnspython`. Isso revela uma prática interessante: o projeto não se limita a testes unitários simples com `pytest`. Ele usa `pytest-xdist` para rodar os testes em paralelo (reduzindo o tempo total da suíte, que tem 370 testes), `playwright` para testes de ponta a ponta envolvendo navegador, e `pytest-codspeed` para rodar benchmarks de performance como parte da própria suíte de testes (há uma categoria dedicada "Benchmarks" com 13 arquivos). Ou seja, o FastAPI integra testes funcionais, testes de regressão de performance e execução paralela no mesmo pipeline de CI, em vez de tratá-los como processos separados.
 
 ### Repositório 2
 
-Repositório: `<URL_DO_REPOSITÓRIO>`
+Repositório: `https://github.com/prisma/prisma`
 
-URL TestMiner: `<URL_NO_TESTMINER>`
+URL TestMiner: `https://andrehora.github.io/testminer/#prisma/prisma`
 
-Explicação: `<SUA_EXPLICAÇÃO>`
+Explicação: O Prisma é um monorepo grande (1233 arquivos-fonte) e o TestMiner mostra que os testes estão organizados em várias categorias distintas: Tests (632), Test Helpers (1060), Fixtures (580), E2E (884), Snapshots (32), Benchmarks (47) e Mocks (2). Duas práticas chamam atenção. A primeira é o uso extensivo de "Snapshots" (testes de snapshot): em vez de escrever asserções manuais para estruturas complexas (como o schema introspectado de um banco), o teste compara a saída atual com um snapshot salvo anteriormente, facilitando detectar mudanças inesperadas em saídas grandes. A segunda é a dependência `fast-check` listada em "Test Dependencies", que indica o uso de testes baseados em propriedades (property-based testing): em vez de fixar poucos exemplos de entrada, a biblioteca gera automaticamente muitos casos de teste para validar invariantes do código, aumentando a chance de encontrar casos extremos que um teste manual não cobriria.
